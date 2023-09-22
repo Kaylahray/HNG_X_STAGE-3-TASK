@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBaWxTWxNUEUpoxZ-p9qSiyNnur8kjlbJc",
-  authDomain: "fir-dnd-auth-11.firebaseapp.com",
+  apiKey: `${import.meta.env.VITE_API_KEY}`,
+  authDomain: `${import.meta.env.VITE_AUTH_DOMAIN}`,
   projectId: "fir-dnd-auth-11",
   storageBucket: "fir-dnd-auth-11.appspot.com",
   messagingSenderId: "307437800829",
