@@ -9,7 +9,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{JSON.stringify(import.meta.env)}</h1>
       {error && <p className="error">{error}</p>}
       {loading ? (
         <h2>Loading...</h2>
