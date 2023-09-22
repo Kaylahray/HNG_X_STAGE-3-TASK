@@ -79,17 +79,27 @@ const GalleryPage = () => {
   return (
     <>
       <div className="userSearch">
-        <h2> Hello {user.displayName} </h2>
-        <input
-          type="text"
-          placeholder="Try dog, cats, nature"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button type="submit" onClick={handleSearch}>
-          Search
-        </button>
-        <button onClick={logoutUser}>Log out</button>
+        <div className="logout">
+          <button onClick={logoutUser}>Log out</button>
+        </div>
+        <div className="user">
+          <h2>
+            Hello <span className="display"> {user.displayName}, </span>
+            <span>Welcome to your Gallery</span>
+          </h2>
+          <p>Search and Re-order beautiful images.</p>
+        </div>
+        <div className="user_input">
+          <input
+            type="text"
+            placeholder="Search Tag e.g dog, cat, nature"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
       </div>
       <div className="gallery">
         <DndContext

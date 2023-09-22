@@ -16,35 +16,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-#root {
-  max-width: 1440px;
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  width: 100%;
-  background-color: rgb(40, 53, 64);
-  margin-top: 0;
+  flex-direction: column;
+  max-width: 1440px;
 }
 
-input {
-  padding: 12px;
-  margin: 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 4px #ccc;
-  border-radius: 6px;
-  font-size: 18px;
-  width: 93%;
-}
-
-button {
-  background-color: teal;
+.form button {
+  background-color: rgb(1, 31, 31);
   border: none;
   color: white;
   padding: 12px;
-  margin: 12px 0;
+  margin: 12px auto;
   box-shadow: 0 1px 6px #ccc;
   border-radius: 6px;
   font-size: 18px;
+}
+.form button:disabled {
+  background-color: rgb(50, 133, 133);
+}
+.form input {
+  padding: 12px;
+  margin: 12px;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  box-shadow: 0 1px 4px #ccc;
+  /* border-radius: 6px; */
+  font-size: 18px;
+  width: 93%;
 }
 
 .container {
@@ -55,20 +59,25 @@ button {
   justify-content: center;
   flex-direction: column;
   width: 400px;
-  background-color: blue;
-  margin: 50px auto;
   padding: 22px;
 }
 
 .container > p {
   cursor: pointer;
   margin: 12px;
+  text-align: center;
+  color: teal;
 }
 
 .form {
   width: 100%;
+  
 }
-
+.buttonDiv{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
 .form > h2 {
   text-align: center;
 }
@@ -82,11 +91,11 @@ button {
 
 .form > form > p {
   cursor: pointer;
+  text-align: center;
 }
 
 .error {
-  background-color: tomato;
-  color: white;
+  color: red;
   border-radius: 6px;
   padding: 6px 12px;
   font-weight: bold;
@@ -98,17 +107,81 @@ button {
   display: grid;
   place-items: center;
   min-height: 700px;
+  margin-top: 20px;
   padding: 20px;
   gap: 20px;
 }
 .userSearch {
-  background-color: aqua;
-  width: 80%;
+  /* background-color: aqua; */
+  width: 90%;
   margin: 0 auto;
-  height: 100px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.userSearch button {
+  background-color: rgb(153, 239, 66);
+  border: none;
+  color: white;
+  padding: 12px;
+  margin: 12px 0;
+  box-shadow: 0 1px 6px #ccc;
+  border-radius: 6px;
+  font-size: 18px;
+}
+.userSearch button:hover {
+  background-color: transparent;
+  border: none;
+  color: rgb(153, 239, 66);
+  padding: 12px;
+  margin: 12px 0;
+  box-shadow: 0 1px 6px #ccc;
+  border-radius: 6px;
+  font-size: 18px;
+}
+
+.user_input {
+  display: flex;
+  width: 90%;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+}
+.display {
+  color: #ccc;
+}
+.user_input input {
+  padding: 12px;
+  margin: 12px;
+  font-size: 14px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  box-shadow: 0 1px 4px #ccc;
+  /* border-radius: 6px; */
+  font-size: 18px;
+  width: 70%;
+}
+.user h2,
+.user p {
+  text-align: center;
+  margin-top: 20px;
+  font-variant: small-caps;
+}
+.user p {
+  color: teal;
+}
+.logout {
+  width: 90%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
+}
+.logout button {
+  background-color: red;
+  color: black;
 }
 .gallery_itm {
   height: 300px;
@@ -121,8 +194,14 @@ button {
 }
 @media screen and (max-width: 500px) {
   .container {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+  }
+  .form {
+    width: 100%;
+  }
+  .form input {
+    width: 100%;
   }
 }
 @media screen and (min-width: 768px) {

@@ -1,37 +1,77 @@
-import { useRef } from "react";
-
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Context } from "../../context/Context";
 
 const LogIn = () => {
-  const emailRef = useRef();
-  const psdRef = useRef();
-  const { signInUser, forgotPassword } = Context();
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const email = emailRef.current.value;
-    const password = psdRef.current.value;
-    if (email && password) signInUser(email, password);
+  const initialValues = {
+    email: "",
+    password: "",
   };
+  const validationSchema = Yup.object({
+    email: Yup.string().required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must contain at least 8 characters."),
+  });
 
-  const forgotPasswordHandler = () => {
-    const email = emailRef.current.value;
-    if (email)
-      forgotPassword(email).then(() => {
-        emailRef.current.value = "";
-      });
+  const { signInUser } = Context();
+
+  const onSubmit = (values) => {
+    const { email, password } = values;
+    if (email && password) {
+      signInUser(email, password);
+    }
   };
 
   return (
-    <div className="form">
-      <h2> Login </h2>
-      <form onSubmit={onSubmit}>
-        <input placeholder="Email" type="email" ref={emailRef} />
-        <input placeholder="Password" type="password" ref={psdRef} />
-        <button type="submit">Sign In</button>
-        <p onClick={forgotPasswordHandler}>Forgot Password?</p>
-      </form>
-    </div>
+    <>
+      <h2>Login</h2>
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {(formik) => {
+          return (
+            <Form className="form">
+              <div className="inputBox">
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="e.g. chiomachris@gmail.com"
+                />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
+
+              <div className="inputBox">
+                <Field
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="*********"
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error"
+                />
+              </div>
+
+              <div className="buttonDiv">
+                <button
+                  type="submit"
+                  disabled={!formik.isValid || formik.isSubmitting}
+                >
+                  Login
+                </button>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
+    </>
   );
 };
 

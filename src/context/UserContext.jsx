@@ -5,7 +5,6 @@ import {
   onAuthStateChanged,
   signOut,
   updateProfile,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
@@ -56,10 +55,6 @@ export const UserContextProvider = ({ children }) => {
     signOut(auth);
   };
 
-  const forgotPassword = (email) => {
-    return sendPasswordResetEmail(auth, email);
-  };
-
   const contextValue = {
     user,
     loading,
@@ -67,7 +62,6 @@ export const UserContextProvider = ({ children }) => {
     signInUser,
     registerUser,
     logoutUser,
-    forgotPassword,
   };
   return (
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
