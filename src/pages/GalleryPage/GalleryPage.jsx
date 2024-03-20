@@ -22,7 +22,10 @@ const GalleryPage = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState("Random");
   const [isLoading, setIsLoading] = useState(true);
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor)
+  );
 
   const fetchImages = async () => {
     setIsLoading(true);
@@ -30,20 +33,16 @@ const GalleryPage = () => {
       const { data } = await axios.get(
         `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=cIELD0H3y3O1B7pe_UAaDX4d8zZW4tTYuFYMfsHipIY`
       );
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-
       const sortedImages = data.results.map((image, index) => ({
         ...image,
         id: image.id.toString(),
         order: index,
       }));
-
       setImages(sortedImages);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,7 +63,9 @@ const GalleryPage = () => {
         const oldIndex = prevImages.findIndex(
           (image) => image.id === active.id
         );
-        const newIndex = prevImages.findIndex((image) => image.id === over.id);
+        const newIndex = prevImages.findIndex(
+          (image) => image.id === over.id
+        );
 
         return arrayMove(prevImages, oldIndex, newIndex).map(
           (image, index) => ({
@@ -84,7 +85,8 @@ const GalleryPage = () => {
         </div>
         <div className="user">
           <h2>
-            Hello <span className="display"> {user.displayName}, </span>
+            Hello{" "}
+            <span className="display"> {user.displayName}, </span>
             <span>Welcome to your Gallery</span>
           </h2>
           <p>Search and Re-order beautiful images.</p>
@@ -107,13 +109,17 @@ const GalleryPage = () => {
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
-          <SortableContext items={images} strategy={rectSortingStrategy}>
+          <SortableContext
+            items={images}
+            strategy={rectSortingStrategy}
+          >
             {images.map((image, index) => (
               <SortableImage
                 key={image.id}
                 image={image}
                 index={index}
                 isLoading={isLoading}
+                loading="lazy"
               />
             ))}
           </SortableContext>
