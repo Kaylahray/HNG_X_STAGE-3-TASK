@@ -82,9 +82,7 @@ const GalleryPage = () => {
       });
     }
   };
-  if (!user) {
-    return <div>Loading...</div>; // Or any other loading indicator
-  }
+
   return (
     <>
       <div className="userSearch">
@@ -102,7 +100,7 @@ const GalleryPage = () => {
         <div className="user_input">
           <input
             type="text"
-            placeholder="Search Tag e.g dog, cat, nature"
+            placeholder="Search Tag e.g dog, girl, nature😃"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
