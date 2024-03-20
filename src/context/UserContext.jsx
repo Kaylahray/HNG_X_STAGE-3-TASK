@@ -27,7 +27,7 @@ export const UserContextProvider = ({ children }) => {
       setError("");
       setLoading(false);
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const registerUser = (email, password, name) => {
@@ -64,6 +64,8 @@ export const UserContextProvider = ({ children }) => {
     logoutUser,
   };
   return (
-    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
+    <UserContext.Provider value={contextValue}>
+      {children}
+    </UserContext.Provider>
   );
 };

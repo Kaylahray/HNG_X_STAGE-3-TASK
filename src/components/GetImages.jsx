@@ -32,7 +32,7 @@ const SortableImage = ({ image, isLoading }) => {
     >
       {isLoading ? (
         <SkeletonTheme baseColor="#202028" highlightColor="#4ff">
-          <Skeleton height={300} duration={6} />
+          <Skeleton height={300} />
         </SkeletonTheme>
       ) : (
         <img

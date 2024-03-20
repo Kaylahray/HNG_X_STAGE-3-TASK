@@ -56,6 +56,12 @@ const GalleryPage = () => {
     fetchImages();
     setQuery("");
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      fetchImages();
+      setQuery("");
+    }
+  };
 
   const handleDragEnd = ({ active, over }) => {
     if (active.id !== over.id) {
@@ -76,7 +82,9 @@ const GalleryPage = () => {
       });
     }
   };
-
+  if (!user) {
+    return <div>Loading...</div>; // Or any other loading indicator
+  }
   return (
     <>
       <div className="userSearch">
@@ -97,6 +105,7 @@ const GalleryPage = () => {
             placeholder="Search Tag e.g dog, cat, nature"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <button type="submit" onClick={handleSearch}>
             Search
