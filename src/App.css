@@ -5,9 +5,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -71,9 +71,8 @@ code {
 
 .form {
   width: 100%;
-  
 }
-.buttonDiv{
+.buttonDiv {
   align-items: center;
   justify-content: center;
   display: flex;
@@ -130,6 +129,7 @@ code {
   box-shadow: 0 1px 6px #ccc;
   border-radius: 6px;
   font-size: 18px;
+  cursor: pointer;
 }
 .userSearch button:hover {
   background-color: transparent;
@@ -182,6 +182,7 @@ code {
 .logout button {
   background-color: red;
   color: black;
+  cursor: pointer;
 }
 .gallery_itm {
   height: 300px;

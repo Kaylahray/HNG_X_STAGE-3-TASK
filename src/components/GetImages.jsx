@@ -4,7 +4,6 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSortable } from "@dnd-kit/sortable";
 
 const SortableImage = ({ image, isLoading }) => {
-  
   const {
     setNodeRef,
     attributes,
@@ -32,14 +31,14 @@ const SortableImage = ({ image, isLoading }) => {
       className="gallery_itm"
     >
       {isLoading ? (
-        <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <Skeleton height={300} duration={2} />
+        <SkeletonTheme baseColor="#202028" highlightColor="#4ff">
+          <Skeleton height={300} duration={6} />
         </SkeletonTheme>
       ) : (
         <img
           loading="lazy"
           className="gallery__img"
-          src={image.urls.full}
+          src={image.urls.small}
           alt="poster"
         />
       )}
